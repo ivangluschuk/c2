@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "word_card")
 @IdClass(DomainCompositeKey.class)
-@Embeddable
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class WordCard {

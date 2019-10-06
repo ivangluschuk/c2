@@ -30,10 +30,27 @@ public class User {
 
     @Getter
     @Setter
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+        targetEntity = WordCard.class,
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
     @JoinColumns({
         @JoinColumn(name = "owner_id", referencedColumnName = "id"),
         @JoinColumn(name = "owner_id_type", referencedColumnName = "id_type"),
     })
     List<WordCard> wordCards;
+
+    @Getter
+    @Setter
+    @OneToMany(
+        targetEntity = WordCardDeck.class,
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JoinColumns({
+        @JoinColumn(name = "owner_id", referencedColumnName = "id"),
+        @JoinColumn(name = "owner_id_type", referencedColumnName = "id_type"),
+    })
+    List<WordCardDeck> wordCardDecks;
 }

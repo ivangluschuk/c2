@@ -32,7 +32,7 @@ public class WordCardRepositoryTest{
     }
 
     @Test
-    public void findWordCardById() {
+    public void findWordCardByWord() {
 
         var wordCard = new WordCard();
         wordCard.setWord("a word");
