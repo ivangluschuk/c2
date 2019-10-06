@@ -3,30 +3,37 @@ package c2.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usr")
 @IdClass(DomainCompositeKey.class)
-@NoArgsConstructor
-@RequiredArgsConstructor
 public class User {
 
     @Getter
-    @NonNull
+    @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "id")
     private Long id;
 
     @Getter
+    @Setter
     @Id
-    @Column(name = "id_type")
-    private String idType = "usr";
-
+    @Column(name = "id_type", nullable = false)
+    private Integer idType = DomainObjectIdType.USR.getIdType();
 
     @Getter
     @Setter
-    @NonNull
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Getter
+    @Setter
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumns({
+        @JoinColumn(name = "owner_id", referencedColumnName = "id"),
+        @JoinColumn(name = "owner_id_type", referencedColumnName = "id_type"),
+    })
+    List<WordCard> wordCards;
 }

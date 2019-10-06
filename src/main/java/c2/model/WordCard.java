@@ -7,39 +7,38 @@ import javax.persistence.*;
 @Entity
 @Table(name = "word_card")
 @IdClass(DomainCompositeKey.class)
+@Embeddable
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class WordCard {
 
     @Getter
+    @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "id")
     private Long id;
 
     @Getter
-    @NonNull
+    @Setter
     @Id
-    @Column(name = "id_type")
-    private String idType = "word_card";
+    @Column(name = "id_type", nullable = false)
+    private Integer idType = DomainObjectIdType.WORD_CARD.getIdType();
 
     @Getter
     @Setter
     @NonNull
-    @Column(name = "word")
+    @Column(name = "word", nullable = false)
     private String word;
 
     @Getter
     @Setter
     @NonNull
-    @Column(name = "translation")
+    @Column(name = "translation", nullable = false)
     private String translation;
 
     @Getter
     @Setter
-    @NonNull
     @Column(name = "definition")
     private String definition;
-
-
 }

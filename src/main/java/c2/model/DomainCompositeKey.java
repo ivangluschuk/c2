@@ -2,12 +2,10 @@ package c2.model;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
-@Embeddable
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class DomainCompositeKey implements Serializable {
 
     @Getter
@@ -16,7 +14,7 @@ public class DomainCompositeKey implements Serializable {
 
     @Getter
     @Setter
-    private String idType;
+    private Integer idType;
 
     @Override
     public boolean equals(Object o) {
